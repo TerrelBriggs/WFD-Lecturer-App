@@ -72,7 +72,7 @@
             android:layout_marginTop="62dp"
             android:layout_marginEnd="50dp"
             android:onClick="createGroup"
-            android:text="Create Group"
+            android:text="Start Class"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintEnd_toStartOf="@+id/btnDiscover"
@@ -103,21 +103,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clHasConnection"
-        android:padding="24dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvChat"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/llChatSend"
-            />
+            tools:layout_editor_absoluteX="24dp" />
 
         <LinearLayout
             android:id="@+id/llChatSend"
@@ -125,28 +126,67 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <EditText
                 android:id="@+id/etMessage"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:inputType="textMultiLine"
-                android:minLines="3"
-                android:maxLines="5"
-                android:hint="Enter message..."
                 android:layout_height="wrap_content"
-                 />
+                android:layout_weight="1"
+                android:hint="Enter message..."
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:minLines="3" />
 
             <Button
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="Send"
                 android:onClick="sendMessage"
-                android:layout_height="wrap_content"/>
+                android:text="Send" />
         </LinearLayout>
-        
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="112dp"
+            android:layout_height="26dp"
+            android:text="STUDENT CHAT"
+            tools:layout_editor_absoluteX="125dp"
+            tools:layout_editor_absoluteY="366dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class Network:"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Network Password:"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="40dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Class"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="71dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATTENDEES"
+            tools:layout_editor_absoluteX="134dp"
+            tools:layout_editor_absoluteY="144dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
