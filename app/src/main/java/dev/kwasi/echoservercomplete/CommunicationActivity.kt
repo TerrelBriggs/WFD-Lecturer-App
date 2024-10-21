@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.IntentFilter
 import android.net.wifi.p2p.WifiP2pDevice
 import android.net.wifi.p2p.WifiP2pGroup
+import android.net.wifi.p2p.WifiP2pInfo
 import android.net.wifi.p2p.WifiP2pManager
+import android.net.wifi.p2p.WifiP2pWfdInfo
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -88,6 +91,10 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
         wfdManager?.createGroup()
     }
 
+    fun endGroup(view: View){
+        wfdManager?.disconnect()
+    }
+
     fun discoverNearbyPeers(view: View) {
         wfdManager?.discoverPeers()
     }
@@ -117,11 +124,11 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
     fun sendMessage(view: View) {
         val etMessage:EditText = findViewById(R.id.etMessage)
         val etString = etMessage.text.toString()
+        val myID = "111111111"
         val content = ContentModel(etString, deviceIp)
         etMessage.text.clear()
         client?.sendMessage(content)
         chatListAdapter?.addItemToEnd(content)
-
     }
 
     override fun onWiFiDirectStateChanged(isEnabled: Boolean) {
@@ -162,6 +169,11 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
         } else if (groupInfo.isGroupOwner && server == null){
             server = Server(this)
             deviceIp = "192.168.49.1"
+            val netId = wfdManager?.groupInfo?.networkName
+            val netPass = wfdManager?.groupInfo?.passphrase
+            val tv: TextView = findViewById(R.id.networkInfo)
+            val showme: String = "Class network: " + netId + "\n" + "Network password: " + netPass
+            tv.text = showme
         } else if (!groupInfo.isGroupOwner && client == null) {
             client = Client(this)
             deviceIp = client!!.ip
@@ -183,5 +195,14 @@ class CommunicationActivity : AppCompatActivity(), WifiDirectInterface, PeerList
             chatListAdapter?.addItemToEnd(content)
         }
     }
+
+//    fun showNetInfo(view: View){
+//        val netId = wfdManager?.groupInfo?.networkName
+//        val netPass = wfdManager?.groupInfo?.passphrase
+//        val tv: TextView = findViewById(R.id.networkInfo)
+//        val showme: String = "Class network: " + netId + "\n" + "Network password: " + netPass
+//        tv.text = showme
+//
+//    }
 
 }
